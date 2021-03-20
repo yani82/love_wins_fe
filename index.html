@@ -1,11 +1,35 @@
 <!DOCTYPE html> 
-	<html land=“en” dir=“ltr”> 
+	<html lang=“en” dir=“ltr”> 
 		<head>
 			<meta charset=“utf-8”> 
 			<title></title> 
-			<script src="src/index.js" charset="utf-8"></script>
+			<script type="text/javascript" src="index.js"></script>
 		</head>
 		<body> 
+
+			<div class="form-container">
+
+				<form id="create-post-form" style="">
+				  <h3>Create a Post!</h3>
+			  
+				  <input id='input-title' type="text" name="title" value="" placeholder="Enter your post name..." class="input-text">
+				  <br><br>
+				  <textarea id='input-content' name="content" rows="8" cols="80" value="" placeholder="Enter your post content..."></textarea>
+				  <br><br>
+				  <input id='input-url' type="text" name="image" value="" placeholder="Enter your post image URL..." class="input-text">
+				  <br><br>
+			  
+				  <select id="users" name="users">
+					<option value="1">Mariah</option>
+					<option value="2">Whitney</option>
+					<option value="3">Aaliyah</option>
+				  </select>
+				  <br><br>
+			  
+				  <input id= 'create-button' type="submit" name="submit" value="Create New Post" class="submit">
+				</form>
+			  
+			</div>
 
             <div id="post-container">
 
