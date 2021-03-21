@@ -15,10 +15,10 @@ function getPosts() {
 		posts.data.forEach(post => {
             const postMarkup = `
               <div data-id=${post.id}>
-                <img src=${post.attributes.image_url} height="200" width="250">
-                <h3>${post.attributes.title}</h3>
-                <p>"${post.attributes.content}"</p>
-                <p>${post.attributes.user.name}</p>
+                <img src=${post.image_url} height="200" width="250">
+                <h3>${post.title}</h3>
+                <p>"${post.content}"</p>
+                <p>${post.user.name}</p>
                 <button data-id=${post.id}>edit</button>
               </div>
               <br><br>`;
@@ -38,5 +38,28 @@ function createFormHandler(e) {
 }
 
 function postFetch(title, content, image_url, user_id) {
-  console.log(title, content, image_url, user_id)
+    const bodyData = {title, content, image_url, user_id}
+  
+    fetch(endPoint, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(bodyData)
+      //  same as listing down all attributes ie "({title: title, })"
+    })
+    .then(res => res.json())
+    .then(post => {
+      console.log(post);
+      const postData = post.data.attributes
+      const postMarkup = `
+      <div data-id=${post.id}>
+        <img src=${postData.image_url} height="200" width="250">
+        <h3>${postData.title}</h3>
+        <p>"${postData.content}"</p>
+        <p>~ ${postData.user.name}</p>
+        <button data-id=${postData.id}>edit</button>
+      </div>
+      <br><br>`;
+  
+      document.querySelector('#post-container').innerHTML += postMarkup;
+    })  
 }
