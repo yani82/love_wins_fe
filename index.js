@@ -13,7 +13,13 @@ function getPosts() {
 	.then(res => res.json())
 	.then(posts => {
 		posts.data.forEach(post => {
-            const postMarkup = `
+            render(post)
+          })
+    })
+}
+
+function render(post) {
+  const postMarkup = `
               <div data-id=${post.id}>
                 <img src=${post.image_url} height="200" width="250">
                 <h3>${post.title}</h3>
@@ -24,8 +30,6 @@ function getPosts() {
               <br><br>`;
     
               document.querySelector('#post-container').innerHTML += postMarkup
-          })
-    })
 }
 
 function createFormHandler(e) {
@@ -47,19 +51,10 @@ function postFetch(title, content, image_url, user_id) {
       //  same as listing down all attributes ie "({title: title, })"
     })
     .then(res => res.json())
+    // .catch(err => console.log(err))
     .then(post => {
       console.log(post);
       const postData = post.data.attributes
-      const postMarkup = `
-      <div data-id=${post.id}>
-        <img src=${postData.image_url} height="200" width="250">
-        <h3>${postData.title}</h3>
-        <p>"${postData.content}"</p>
-        <p>~ ${postData.user.name}</p>
-        <button data-id=${postData.id}>edit</button>
-      </div>
-      <br><br>`;
-  
-      document.querySelector('#post-container').innerHTML += postMarkup;
+      render(postData)
     })  
 }
