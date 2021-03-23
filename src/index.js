@@ -16,12 +16,10 @@ function getPosts() {
 
             document.querySelector('#post-container').innerHTML += newPost.renderPostCard()
 
-            debugger
-
             // render(post)
-          })
-    })
-}
+          });
+    });
+};
 
 function createFormHandler(e) {
   e.preventDefault()
@@ -46,6 +44,9 @@ function postFetch(title, content, image_url, user_id) {
     .then(post => {
       console.log(post);
       const postData = post.data.attributes
-      render(postData)
+      // can I remove .attributes? ^
+      let newPost = new Post(postData, postData.attributes) 
+
+      document.querySelector('#post-container').innerHTML += newPost.renderPostCard()
     })  
 }
