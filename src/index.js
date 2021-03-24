@@ -45,7 +45,7 @@ function postFetch(title, content, image_url, user_id) {
       console.log(post);
       const postData = post.data.attributes
       // can I remove .attributes? ^
-      let newPost = new Post(postData, postData.attributes) 
+      let newPost = new Post(post, postData) 
 
       document.querySelector('#post-container').innerHTML += newPost.renderPostCard()
     })  
