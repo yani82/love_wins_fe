@@ -1,12 +1,12 @@
 class Post {
    
     constructor(post, postAttributes) {
-        this.id = post.id;
-        this.title = postAttributes.title;
-        this.content = postAttributes.content; 
-        this.image_url = postAttributes.image_url;
-        this.user = postAttributes.user;
-        Post.all.push(this); 
+        this.id = post.id
+        this.title = postAttributes.title
+        this.content = postAttributes.content
+        this.image_url = postAttributes.image_url
+        this.user = postAttributes.user
+        Post.all.push(this)
     }
 
     renderPostCard() { 
