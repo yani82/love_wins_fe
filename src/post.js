@@ -16,7 +16,8 @@ class Post {
                 <h3>${this.title}</h3>
                 <p>"${this.content}"</p>
                 <p>~ ${this.user.name}</p>
-                <button data-id=${this.id}>edit</button>
+                // <input type="button" value="Delete Post" data-id=${this.id} id="delete-post-button"></input>
+                <a class="delete-post-button" id="delete-post-button">Delete Post</a>
             </div>
             <br><br>`;
       }
