@@ -1,4 +1,4 @@
-const endPoint = 'http://localhost:3000/api/v1/posts';
+const endPoint = 'http://localhost:3000/api/v1/posts'; 
 
 document.addEventListener('DOMContentLoaded', () => {
     getPosts();
@@ -26,7 +26,7 @@ function createFormHandler(e) {
   e.preventDefault();
   const titleInput = document.querySelector('#input-title').value;
   const contentInput = document.querySelector('#input-content').value;
-  const imageInput = document.querySelector('#input-image').value; 
+  const imageInput = document.querySelector('#input-url').value; 
   // const userId = parseInt(document.querySelector("#users").value) 
   const userId = document.querySelector('#users').value;
   postFetch(titleInput, contentInput, imageInput, userId);

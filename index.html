@@ -82,21 +82,25 @@
     <div class="container">
       <form id="create-post-form">
         <div class="form-group">
-          <label for="exampleInputText">Title</label>
-          <input type="text" class="form-control" id="exampleInputText" aria-describedby="textHelp">
+          <label for="input-title">Title</label>
+          <input type="text" class="form-control" id="input-title" aria-describedby="textHelp">
           <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Content</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <label for="input-content">Content</label>
+          <textarea class="form-control" id="input-content" rows="3"></textarea>
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">Image URL</label>
-          <input type="text" class="form-control" id="exampleInputText" aria-describedby="textHelp">
+          <label for="input-url">Image URL</label>
+          <input type="text" class="form-control" id="input-url" aria-describedby="textHelp">
         </div>
         <div class="form-group">
             <option>Volunteers</option>
-            <input class="form-control" type="text" placeholder="Name">
+            <select id="users" name="users">
+              <option value="1">Mariah</option>
+              <option value="2">Whitney</option>
+              <option value="3">Aaliyah</option>
+              </select>
         </div>
         <button type="submit" class="btn btn-primary">Create Post</button>
       </form>
