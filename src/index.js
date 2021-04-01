@@ -53,36 +53,45 @@ function postFetch(title, content, image_url, user_id) {
       document.querySelector('#post-container').innerHTML += newPost.renderPostCard();
     }); 
     
-    // function postDelete(title, content, image_url, user_id) {
-    //   const bodyData = {title, content, image_url, user_id};
+    // 
     
-    //   fetch(`${endPoint}/${id}`, {
-    //     method: 'DELETE',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(bodyData),
-    //     //  same as listing down all attributes ie "({title: title, })"
-    //   })
-    //   .then(res => res.json())
-    //   // .catch(err => console.log(err))
-    //   .then(post => {
-    //     console.log(post);
-    //     const postData = post.data.attributes;
-    //     // can I remove .attributes? ^
-    //     let newPost = new Post(post, postData); 
+    function postDelete(id) {
+      const bodyData = {id}; 
+    
+      fetch(`${endPoint}/${id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bodyData),
+        //  same as listing down all attributes ie "({title: title, })"
+      })
+      .then(res => res.json())
+      // .catch(err => console.log(err))
+      .then(post => {
+        console.log(post);
+        // const postData = post.data.attributes;
+        // can I remove .attributes? ^
+        // let newPost = new Post(post, postData); 
   
-        document.querySelector('#post-container').innerHTML += newPost.renderPostCard();
-      // });  
-    // }
+        // document.querySelector('#post-container').innerHTML += newPost.renderPostCard();
+      });  
+    }
 
-    const postPosts = document.querySelector('.posts_post');
-    
-    postPosts.addEventListener('click', e => {
-    if (e.target.classList.contains('delete-post-button')) {
-      e.target.parentElement.remove();
+    function deletePost() {
+    const postPosts = document.querySelectorAll('.posts_post');
+    const newPosts = Array.from(postPosts); 
+    newPosts.map(post => {
+      post.addEventListener('click', e => {
+        const postId = e.target.parentElement.parentElement.parentElement.parentElement.dataset.id; 
+        if (e.target.classList.contains('delete-post-button')) {
+          e.target.parentElement.parentElement.parentElement.parentElement.remove(); 
+          postDelete(postId);
+        }
+      });
+    });
+  }
       // go through with querySelector every post and within post find delete button and add eventlistener on it (.parentElement.remove)
       // get all the posts, then get the delete button from each post
       // add eventlistener, then do the e.target.parent line in DOMContentLoaded function
-    }
-  });
 
+  deletePost(); 
 }
