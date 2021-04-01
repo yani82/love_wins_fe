@@ -13,7 +13,7 @@ class Post {
     renderPostCard() { 
         return `
         <div class="post_posts col-md-4">
-          <div class="card mb-4 shadow-sm">
+          <div class="card mb-4 shadow-sm" data-id=${this.id}>
           <img src=${this.image_url} class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">${this.title}</h5>
@@ -21,7 +21,7 @@ class Post {
               <footer class="blockquote-footer">${this.user.name}</footer>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="delete-post-button" id="delete-post-button">Delete</button>
+                  <button type="button" class="btn-btn-sm btn-outline-secondary delete-post-button" id="delete-post-button">Delete</button>
                   <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
                 </div>
                 <small class="text-muted">9 mins</small>
@@ -29,7 +29,7 @@ class Post {
             </div>
           </div>
         </div>
-        `
+        `; 
         
         
         // return `

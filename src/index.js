@@ -53,10 +53,8 @@ function postFetch(title, content, image_url, user_id) {
       document.querySelector('#post-container').innerHTML += newPost.renderPostCard();
     }); 
     
-    // 
-    
     function postDelete(id) {
-      const bodyData = {id}; 
+      const bodyData = { id }; 
     
       fetch(`${endPoint}/${id}`, {
         method: 'DELETE',
