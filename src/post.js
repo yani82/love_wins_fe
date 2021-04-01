@@ -12,7 +12,7 @@ class Post {
 
     renderPostCard() { 
         return `
-        <div class="post_posts col-md-4">
+        <div class="posts_post col-md-4">
           <div class="card mb-4 shadow-sm" data-id=${this.id}>
           <img src=${this.image_url} class="card-img-top" alt="...">
             <div class="card-body">
