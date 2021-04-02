@@ -1,13 +1,10 @@
 const endPoint = 'http://localhost:3000/api/v1/posts';
-
 const postContainer = document.querySelector('#post-container');
-
 document.addEventListener('DOMContentLoaded', () => {
   getPosts();
   createPostForm();
   deletePost();
 });
-
 function getPosts() {
   fetch(endPoint)
     .then(res => res.json())
@@ -16,7 +13,7 @@ function getPosts() {
         let newPost = new Post(post, post.attributes);
         // document.querySelector('#post-container').innerHTML += newPost.renderPostCard()
         document
-          .querySelector('#post-container')
+          .querySelector('#post-row')
           .insertAdjacentHTML('beforeend', newPost.renderPostCard());
       });
     });
@@ -53,40 +50,27 @@ function postFetch(title, content, image_url, user_id) {
       // can I remove .attributes? ^
       let newPost = new Post(post, postData);
       document
-        .querySelector('#post-container')
+        .querySelector('#post-row')
         .insertAdjacentHTML('beforeend', newPost.renderPostCard());
     });
-
-  function postDelete(id) {
-    const bodyData = { id };
-    fetch(`${endPoint}/${id}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(bodyData),
-      //  same as listing down all attributes ie "({title: title, })"
-    })
-      .then(res => res.json())
-      // .catch(err => console.log(err))
-      .then(post => {
-        console.log(post);
-        // const postData = post.data.attributes;
-        // // can I remove .attributes? ^
-        // let newPost = new Post(post, postData);
-        // document.querySelector(
-        //   '#post-container'
-        // ).innerHTML += newPost.renderPostCard();
-      });
-  }
-
-  function deletePost() {
-    postContainer.addEventListener('click', e => {
-      const postId =
-        e.target.parentElement.parentElement.parentElement.parentElement.dataset
-          .id;
-      if (e.target.classList.contains('delete-post-button')) {
-        e.target.parentElement.parentElement.parentElement.parentElement.remove();
-        postDelete(postId);
-      }
-    });
-  }
-} 
+}
+function postDelete(id) {
+  const bodyData = { id };
+  fetch(`${endPoint}/${id}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ bodyData }),
+    //  same as listing down all attributes ie "({title: title, })"
+  }).then(res => res.json());
+}
+function deletePost() {
+  postContainer.addEventListener('click', e => {
+    const postId =
+      e.target.parentElement.parentElement.parentElement.parentElement.dataset
+        .id;
+    if (e.target.classList.contains('delete-post-button')) {
+      e.target.parentElement.parentElement.parentElement.parentElement.remove();
+      postDelete(postId);
+    }
+  });
+}
