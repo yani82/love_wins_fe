@@ -1,12 +1,13 @@
 const endPoint = 'http://localhost:3000/api/v1/posts';
+
+const postContainer = document.querySelector('#post-container');
+
 document.addEventListener('DOMContentLoaded', () => {
   getPosts();
   createPostForm();
-  // const createPostForm = document.querySelector('#create-post-form');
-  // createPostForm.addEventListener('submit', function (e) {
-  //   createFormHandler(e);
-  // });
+  deletePost();
 });
+
 function getPosts() {
   fetch(endPoint)
     .then(res => res.json())
@@ -55,6 +56,7 @@ function postFetch(title, content, image_url, user_id) {
         .querySelector('#post-container')
         .insertAdjacentHTML('beforeend', newPost.renderPostCard());
     });
+
   function postDelete(id) {
     const bodyData = { id };
     fetch(`${endPoint}/${id}`, {
@@ -75,33 +77,16 @@ function postFetch(title, content, image_url, user_id) {
         // ).innerHTML += newPost.renderPostCard();
       });
   }
+
   function deletePost() {
-    const postPosts = document.querySelectorAll('.posts_post');
-    const newPosts = Array.from(postPosts);
-    newPosts.map(post => {
-      post.addEventListener('click', e => {
-        const postId =
-          e.target.parentElement.parentElement.parentElement.parentElement
-            .dataset.id;
-        if (e.target.classList.contains('delete-post-button')) {
-          e.target.parentElement.parentElement.parentElement.parentElement.remove();
-          postDelete(postId);
-          // e.target.parentElement.remove();
-          // go through with querySelector every post and within post find delete button and add eventlistener on it (.parentElement.remove)
-          // get all the posts, then get the delete button from each post
-          // add eventlistener, then do the e.target.parent line in DOMContentLoaded function
-        }
-      });
+    postContainer.addEventListener('click', e => {
+      const postId =
+        e.target.parentElement.parentElement.parentElement.parentElement.dataset
+          .id;
+      if (e.target.classList.contains('delete-post-button')) {
+        e.target.parentElement.parentElement.parentElement.parentElement.remove();
+        postDelete(postId);
+      }
     });
   }
-  deletePost();
-  // postPosts.addEventListener('click', e => {
-  //   if (e.target.classList.contains('delete-post-button')) {
-  //     e.target.parentElement.parentElement.parentElement.parentElement.remove();
-  //     // e.target.parentElement.remove();
-  //     // go through with querySelector every post and within post find delete button and add eventlistener on it (.parentElement.remove)
-  //     // get all the posts, then get the delete button from each post
-  //     // add eventlistener, then do the e.target.parent line in DOMContentLoaded function
-  //   }
-  // });
-}
+} 
