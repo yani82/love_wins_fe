@@ -33,6 +33,8 @@ function createFormHandler(e) {
   const userId = document.querySelector('#users').value;
   postFetch(titleInput, contentInput, imageInput, userId);
   // titleInput.value = ""
+  const postForm = document.querySelector('#create-post-form');
+  postForm.reset();
 }
 function postFetch(title, content, image_url, user_id) {
   const bodyData = { title, content, image_url, user_id };
