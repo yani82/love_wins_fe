@@ -4,3 +4,4 @@
 # tu-mock
 # mExIcAn-WaVe
 # nft-card
+# text-editor
